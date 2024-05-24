@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
+
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
