@@ -24,6 +24,7 @@
     "react-dom": "^18",
     "react-redux": "^9.1.0",
     "react-slick": "^0.30.2",
+    "react-slider": "^2.0.6",
     "react-three-fiber": "^6.0.13",
     "react-tsparticles": "^2.9.3",
     "slick-carousel": "^1.8.1",

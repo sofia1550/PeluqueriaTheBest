@@ -1,117 +1,76 @@
-"use client"
 import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Points } from "@react-three/drei";
+import {
+  HeaderContainer,
+  HeaderContent,
+  HeaderText,
+  HeaderOverlay,
+  Button,
+} from "./headerStyled";
 import { motion } from "framer-motion";
-import { Typography, Button } from "@mui/material";
-import styled, { keyframes, css } from "styled-components";
-import BackgroundAnimation from "./BackgroundAnimation";
 
-// Animación para el fadeIn del texto
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
+const Particles = () => {
+  const particlesCount = 5000;
+  const positions = new Float32Array(particlesCount * 3);
 
-const HeaderContainer = styled(motion.div)`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-  width: 100%;
-`;
-
-// Animación de gradiente animado para el fondo, crea un efecto visual dinámico
-const animatedGradient = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const BackgroundLayer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: linear-gradient(
-    270deg,
-    #0f2027,
-    #203a43,
-    #2c5364,
-    #203a43,
-    #0f2027
-  );
-  background-size: 200% 200%;
-  animation: ${animatedGradient} 15s ease infinite;
-`;
-
-const HeaderContent = styled(motion.div)`
-  z-index: 10;
-  padding: 20px;
-  max-width: 600px;
-`;
-
-// Estilización con gradientes y sombras para el texto, aplicando fadeIn
-const StyledTypography = styled(Typography)(
-  ({ theme }) => css`
-    background: -webkit-linear-gradient(left, #a2facf, #64acff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-    animation: ${fadeIn} 2s ease-out;
-  `
-);
-
-// Animación más sutil para el efecto de parpadeo del botón "Explore Now"
-const subtleBlink = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-`;
-
-const ExploreButtonStyled = styled(Button)`
-  margin-top: 20px;
-  border-radius: 20px;
-  padding: 10px 30px;
-  font-size: 18px;
-  background-color: #3A8EBA; // Color azul vibrante para el botón.
-  color: white;
-  box-shadow: 0px 4px 15px rgba(58, 142, 186, 0.5); // Ajustamos la sombra para que coincida con el color azul.
-  animation: ${subtleBlink} 2.5s infinite;
-
-  &:hover {
-    transform: scale(1.05);
-    background-color: #307896; // Un tono de azul más oscuro para el hover, en lugar del rosa.
+  for (let i = 0; i < particlesCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 10;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
   }
-`;
 
-const Header = () => {
   return (
-    <HeaderContainer
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <BackgroundLayer />
+    <Points positions={positions}>
+      <pointsMaterial
+        attach="material"
+        color="#b08d57" // Dorado tenue
+        size={0.05}
+        sizeAttenuation
+      />
+    </Points>
+  );
+};
+
+const Header: React.FC = () => {
+  return (
+    <HeaderContainer>
+      <Canvas>
+        <Particles />
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
+        <OrbitControls enableZoom={false} />
+      </Canvas>
+      <HeaderOverlay />
       <HeaderContent>
-        <BackgroundAnimation />
-        <StyledTypography variant="h3" sx={{ fontWeight: 700 }}>
-          Revolutionize Your Tech Experience
-        </StyledTypography>
-        <StyledTypography
-          variant="h6"
-          sx={{ marginTop: "20px", fontWeight: 500 }}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          Explore the latest in tech and AI to take your business to the next
-          level.
-        </StyledTypography>
-        <ExploreButtonStyled variant="contained" size="large">
-          Explore Now
-        </ExploreButtonStyled>
+          <HeaderText>Bienvenidos a Salon Unisex</HeaderText>
+          <Button
+            whileHover={{ scale: 1.1 }}
+            style={{
+              padding: "10px 20px",
+              fontSize: "1.2rem",
+              cursor: "pointer",
+              background: "linear-gradient(45deg, #3d3d3d, #1c1c1c)",
+              border: "none",
+              borderRadius: "5px",
+              color: "#fff",
+              transition: "background-color 0.3s ease, transform 0.3s ease",
+              marginTop: "20px",
+            }}
+          >
+            Reserva Ahora
+          </Button>
+        </motion.div>
       </HeaderContent>
     </HeaderContainer>
   );
