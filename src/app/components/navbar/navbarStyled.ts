@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Nav = styled.nav`
   background-color: transparent;
@@ -38,7 +38,7 @@ export const Logo = styled.div`
   text-transform: uppercase;
   letter-spacing: 2px;
   &:before {
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 3px;
@@ -49,10 +49,12 @@ export const Logo = styled.div`
 
   @keyframes glow {
     from {
-      text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700;
+      text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700,
+        0 0 40px #ffd700;
     }
     to {
-      text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700, 0 0 50px #ffd700;
+      text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700,
+        0 0 50px #ffd700;
     }
   }
 `;

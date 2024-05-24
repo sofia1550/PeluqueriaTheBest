@@ -16,15 +16,7 @@ const Navbar: React.FC = () => {
     <Nav>
       <CanvasContainer>
         <Canvas>
-          <Stars
-            radius={100}
-            depth={50}
-            count={1000}
-            factor={7}
-            saturation={0}
-            fade
-            speed={2}
-          />
+          <Stars />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
           <OrbitControls enableZoom={false} />

@@ -1,34 +1,26 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background: linear-gradient(145deg, #1e2a38, #1c1c1c);
-    color: #fff; 
+    background-color: #1c1c1c; /* Gris oscuro */
+    color: #f8f9fa; /* Blanco hueso para el texto */
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
   }
+`;
 
-  .customTypography {
-    font-family: 'Arial', sans-serif;
-  }
-
-  #__next {
-    height: 100%;
-  }
-
-  button {
-    background-color: #ffd700;
-    border: none;
-    border-radius: 5px;
-    color: #1c1c1c;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #e6b800;
-    transform: scale(1.05);
-  }
+export const MainContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(28, 28, 28, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
