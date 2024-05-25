@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import {
@@ -8,10 +8,17 @@ import {
   Logo,
   NavContainer,
   CanvasContainer,
+  HamburgerButton,
 } from "./navbarStyled";
 import { motion } from "framer-motion";
 
 const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Nav>
       <CanvasContainer>
@@ -24,7 +31,10 @@ const Navbar: React.FC = () => {
       </CanvasContainer>
       <NavContainer>
         <Logo>Salon Unisex</Logo>
-        <NavLinks>
+        <HamburgerButton onClick={toggleMenu}>
+          &#9776;
+        </HamburgerButton>
+        <NavLinks isOpen={isOpen}>
           <motion.div
             whileHover={{
               scale: 1.2,

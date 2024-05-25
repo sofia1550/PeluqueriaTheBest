@@ -14,6 +14,10 @@ export const HeaderContainer = styled.header`
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.7)
   );
+
+  @media (max-width: 320px) {
+    height: 50vh;
+  }
 `;
 
 export const HeaderOverlay = styled.div`
@@ -44,6 +48,11 @@ export const HeaderText = styled.h1`
   font-weight: bold;
   margin-bottom: 20px;
   text-shadow: 0 0 10px #000;
+
+  @media (max-width: 320px) {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Button = styled(motion.button)`
@@ -59,5 +68,10 @@ export const Button = styled(motion.button)`
   &:hover {
     background-color: #2c2c2c;
     transform: scale(1.05);
+  }
+
+  @media (max-width: 320px) {
+    font-size: 1rem;
+    padding: 8px 16px;
   }
 `;
