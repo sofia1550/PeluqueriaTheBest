@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import { FaBars, FaTimes } from "react-icons/fa";
 import {
   Nav,
   NavLinks,
@@ -7,10 +8,18 @@ import {
   Logo,
   NavContainer,
   CanvasContainer,
+  HamburgerIcon,
+  MobileMenu,
 } from "./navbarStyled";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Nav>
       <CanvasContainer>
@@ -34,6 +43,16 @@ const Navbar = () => {
             </motion.div>
           ))}
         </NavLinks>
+        <HamburgerIcon onClick={toggleMenu}>
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </HamburgerIcon>
+        <MobileMenu $isOpen={isOpen}>
+          {["Home", "Services", "About", "Contact"].map((item) => (
+            <NavLink key={item} href={`#${item.toLowerCase()}`} onClick={toggleMenu}>
+              {item}
+            </NavLink>
+          ))}
+        </MobileMenu>
       </NavContainer>
     </Nav>
   );

@@ -32,6 +32,10 @@ export const NavContainer = styled.div`
   background: rgba(28, 28, 28, 0.8);
   border: 1px solid rgba(255, 215, 0, 0.3); /* Borde dorado translúcido */
   transition: background 0.3s ease, border 0.3s ease;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 export const Logo = styled.div`
@@ -66,6 +70,10 @@ export const Logo = styled.div`
 export const NavLinks = styled.div`
   display: flex;
   gap: 2rem;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const NavLink = styled.a`
@@ -80,5 +88,40 @@ export const NavLink = styled.a`
     color: #ffd700; /* Dorado */
     transform: translateY(-5px);
     text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+  }
+`;
+
+export const HamburgerIcon = styled.div`
+  display: none;
+  cursor: pointer;
+  color: #ffd700; /* Dorado */
+  font-size: 2rem;
+
+  @media (max-width: 1000px) {
+    display: block;
+  }
+`;
+
+export const MobileMenu = styled.div<{ $isOpen: boolean }>`
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(28, 28, 28, 0.9);
+  border-radius: 10px;
+  padding: 1rem;
+  position: absolute;
+  top: 100px;
+  width: 90%;
+  z-index: 9;
+
+  ${({ $isOpen }) =>
+    $isOpen &&
+    `
+    display: flex;
+  `}
+
+  @media (max-width: 1000px) {
+    display: flex;
   }
 `;

@@ -55,7 +55,7 @@ const Header: React.FC = () => {
         {images.map((_, index) => (
           <PaginationDot
             key={index}
-            isActive={currentImage === index}
+            $isActive={currentImage === index}
             onClick={() => selectImage(index)}
           />
         ))}
@@ -65,4 +65,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

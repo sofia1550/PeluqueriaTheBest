@@ -111,11 +111,11 @@ export const PaginationContainer = styled.div`
   z-index: 10;
 `;
 
-export const PaginationDot = styled.div<{ isActive: boolean }>`
+export const PaginationDot = styled.div<{ $isActive: boolean }>`
   width: 10px;
   height: 10px;
   margin: 0 5px;
   border-radius: 50%;
-  background-color: ${({ isActive }) => (isActive ? "#ffd700" : "#fff")};
+  background-color: ${({ $isActive }) => ($isActive ? "#ffd700" : "#fff")};
   cursor: pointer;
 `;
