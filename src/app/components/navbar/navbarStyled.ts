@@ -127,7 +127,8 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
   padding: 1rem;
   position: absolute;
   top: 100px;
-  right: 0; /* Posicionar a la derecha */
+  left: 50%;
+  transform: translateX(-50%); /* Centrar el menú horizontalmente */
   width: 90%;
   z-index: 20;
 
