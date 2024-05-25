@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   overflow: hidden;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7), 
     rgba(0, 0, 0, 0.7)
   );
   background-size: cover; /* Asegurar que la imagen de fondo cubra todo el contenedor */

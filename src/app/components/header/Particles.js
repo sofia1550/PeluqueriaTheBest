@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { Points } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
