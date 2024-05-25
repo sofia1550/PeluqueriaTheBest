@@ -29,6 +29,9 @@ const Navbar = () => {
         </Canvas>
       </CanvasContainer>
       <NavContainer>
+        <HamburgerIcon onClick={toggleMenu}>
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </HamburgerIcon>
         <Logo>Salon Unisex</Logo>
         <NavLinks>
           {["Home", "Services", "About", "Contact"].map((item) => (
@@ -43,12 +46,13 @@ const Navbar = () => {
             </motion.div>
           ))}
         </NavLinks>
-        <HamburgerIcon onClick={toggleMenu}>
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </HamburgerIcon>
         <MobileMenu $isOpen={isOpen}>
           {["Home", "Services", "About", "Contact"].map((item) => (
-            <NavLink key={item} href={`#${item.toLowerCase()}`} onClick={toggleMenu}>
+            <NavLink
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              onClick={toggleMenu}
+            >
               {item}
             </NavLink>
           ))}
@@ -59,3 +63,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

@@ -7,8 +7,8 @@ export const Nav = styled.nav`
   justify-content: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 20; /* Aumentar el z-index para asegurar que esté por encima del header */
-  height: 100px; /* Ajustar altura para mayor visibilidad */
+  z-index: 20;
+  height: 100px;
 `;
 
 export const CanvasContainer = styled.div`
@@ -16,7 +16,7 @@ export const CanvasContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* Asegurar altura completa */
+  height: 100%;
   z-index: -1;
 `;
 
@@ -30,22 +30,25 @@ export const NavContainer = styled.div`
   padding: 1rem;
   border-radius: 10px;
   background: rgba(28, 28, 28, 0.8);
-  border: 1px solid rgba(255, 215, 0, 0.3); /* Borde dorado translúcido */
+  border: 1px solid rgba(255, 215, 0, 0.3);
   transition: background 0.3s ease, border 0.3s ease;
   z-index: 20;
 
   @media (max-width: 1000px) {
-    flex-direction: column;
+    flex-direction: row; /* Cambiar de columna a fila */
+    justify-content: space-between; /* Justificar espacio entre los elementos */
+    align-items: center; /* Alinear los elementos en el centro */
   }
 `;
 
 export const Logo = styled.div`
-  color: #ffd700; /* Dorado */
+  color: #ffd700;
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
+  margin-left: 1rem;
   &::before {
     content: "";
     display: block;
@@ -67,8 +70,12 @@ export const Logo = styled.div`
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 1000px) {
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
   }
 `;
 
@@ -82,7 +89,7 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled.a`
-  color: #f8f9fa; /* Blanco Hueso */
+  color: #f8f9fa;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
@@ -90,7 +97,7 @@ export const NavLink = styled.a`
   transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
 
   &:hover {
-    color: #ffd700; /* Dorado */
+    color: #ffd700;
     transform: translateY(-5px);
     text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
   }
@@ -103,10 +110,11 @@ export const NavLink = styled.a`
 export const HamburgerIcon = styled.div`
   display: none;
   cursor: pointer;
-  color: #ffd700; /* Dorado */
+  color: #ffd700;
   font-size: 2rem;
-  padding: 0.5rem; /* Agregar padding para mantener el ícono dentro del contenedor */
-  z-index: 21; /* Aumentar el z-index para asegurarse de que esté por encima del contenido */
+  padding: 0.5rem;
+  z-index: 21;
+  margin-right: 1rem;
 
   @media (max-width: 1000px) {
     display: block;
@@ -128,7 +136,7 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: 100px;
   left: 50%;
-  transform: translateX(-50%); /* Centrar el menú horizontalmente */
+  transform: translateX(-50%);
   width: 90%;
   z-index: 20;
 
