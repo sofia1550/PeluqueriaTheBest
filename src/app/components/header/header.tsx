@@ -50,7 +50,7 @@ const Header: React.FC = () => {
       $isMobile={isMobile}
       style={{
         backgroundImage: `url(${images[currentImage]})`,
-        marginBottom: "20px",
+        marginBottom: "0px",
       }}
     >
       <TopCanvasContainer>

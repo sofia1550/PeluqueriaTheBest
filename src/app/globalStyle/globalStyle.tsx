@@ -1,10 +1,12 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@fontsource/montserrat'; 
 
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: #1c1c1c; /* Gris oscuro */
     color: #f8f9fa; /* Blanco hueso para el texto */
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
   }
