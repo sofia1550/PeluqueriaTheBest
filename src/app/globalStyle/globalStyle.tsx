@@ -1,4 +1,3 @@
-
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
@@ -8,11 +7,15 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+  }
+
+  #__next {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    width: 100%;
   }
 `;
 

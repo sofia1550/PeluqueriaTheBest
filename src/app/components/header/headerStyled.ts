@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   height: 60vh;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Espacio entre las dos secciones */
   align-items: center;
   overflow: hidden;
   background: linear-gradient(
@@ -14,9 +14,11 @@ export const HeaderContainer = styled.header`
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.7)
   );
+  background-size: cover; /* Asegurar que la imagen de fondo cubra todo el contenedor */
 
   @media (max-width: 320px) {
     height: 50vh;
+    flex-direction: column; /* En pantallas pequeñas, las secciones estarán una encima de la otra */
   }
 `;
 
@@ -35,22 +37,24 @@ export const HeaderContent = styled.div`
   z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  text-align: center; /* Cambiado a "center" */
   color: #f8f9fa;
-  width: 100%;
+  width: 50%;
+  height: 100%; /* Asegurarse de que ocupe toda la altura */
   padding: 0 20px;
   box-sizing: border-box;
 `;
 
 export const HeaderText = styled.h1`
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bold;
   margin-bottom: 20px;
   text-shadow: 0 0 10px #000;
 
   @media (max-width: 320px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 10px;
   }
 `;
@@ -74,4 +78,44 @@ export const Button = styled(motion.button)`
     font-size: 1rem;
     padding: 8px 16px;
   }
+`;
+
+export const CanvasContainer = styled.div`
+  width: 50%;
+  height: 100%;
+  position: relative;
+`;
+
+export const ArrowIcon = styled.div`
+  position: absolute;
+  right: 5vh; /* Ajustar la posición según tu preferencia */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PaginationContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+`;
+
+export const PaginationDot = styled.div<{ isActive: boolean }>`
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: ${({ isActive }) => (isActive ? "#ffd700" : "#fff")};
+  cursor: pointer;
 `;
