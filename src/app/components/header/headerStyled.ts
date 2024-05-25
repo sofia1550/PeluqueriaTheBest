@@ -86,7 +86,7 @@ export const Button = styled(motion.button)`
   border-radius: 5px;
   color: #fff;
   transition: background-color 0.3s ease, transform 0.3s ease;
-
+  margin-top: 10px;
   &:hover {
     background-color: #2c2c2c;
     transform: scale(1.05);
