@@ -27,7 +27,7 @@ const Header: React.FC = () => {
   const selectImage = (index: number) => {
     setCurrentImage(index);
   };
-
+ 
   return (
     <HeaderContainer style={{ backgroundImage: `url(${images[currentImage]})` }}>
       <HeaderContent>
