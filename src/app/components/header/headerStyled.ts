@@ -1,24 +1,32 @@
 import { motion } from "framer-motion";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header<{ $isMobile: boolean }>`
   width: 100%;
   height: 60vh;
   position: relative;
   display: flex;
-  justify-content: space-between; /* Espacio entre las dos secciones */
+  flex-direction: column; /* Cambiado a columna para permitir las secciones superior e inferior */
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.7), 
+    rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.7)
   );
-  background-size: cover; /* Asegurar que la imagen de fondo cubra todo el contenedor */
+  background-size: cover;
 
-  @media (max-width: 320px) {
-    height: 50vh;
-    flex-direction: column; /* En pantallas pequeñas, las secciones estarán una encima de la otra */
+  ${({ $isMobile }) =>
+    $isMobile &&
+    css`
+      justify-content: center;
+      align-items: center;
+      height: auto;
+    `}
+
+  @media (max-width: 768px) {
+    height: auto;
   }
 `;
 
@@ -37,14 +45,18 @@ export const HeaderContent = styled.div`
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center; /* Centrar horizontalmente */
-  text-align: center; /* Cambiado a "center" */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   color: #f8f9fa;
-  width: 50%;
-  height: 100%; /* Asegurarse de que ocupe toda la altura */
+  width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const HeaderText = styled.h1`
@@ -53,8 +65,14 @@ export const HeaderText = styled.h1`
   margin-bottom: 20px;
   text-shadow: 0 0 10px #000;
 
+  @media (max-width: 500px) {
+    font-size: 2.5rem;
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+
   @media (max-width: 320px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 10px;
   }
 `;
@@ -80,26 +98,44 @@ export const Button = styled(motion.button)`
   }
 `;
 
-export const CanvasContainer = styled.div`
-  width: 50%;
-  height: 100%;
+export const TopCanvasContainer = styled.div`
+  width: 100%;
+  height: 20vh; /* Ajustar la altura según sea necesario */
   position: relative;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
+`;
+
+export const BottomCanvasContainer = styled.div`
+  width: 100%;
+  height: 20vh; /* Ajustar la altura según sea necesario */
+  position: relative;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 export const ArrowIcon = styled.div`
   position: absolute;
-  right: 5vh; /* Ajustar la posición según tu preferencia */
+  right: 5vh;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 10;
   width: 50px;
   height: 50px;
-  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    right: 2vh;
+  }
 `;
 
 export const PaginationContainer = styled.div`

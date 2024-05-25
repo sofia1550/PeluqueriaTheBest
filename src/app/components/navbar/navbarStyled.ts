@@ -7,7 +7,7 @@ export const Nav = styled.nav`
   justify-content: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 10;
+  z-index: 20; /* Aumentar el z-index para asegurar que esté por encima del header */
   height: 100px; /* Ajustar altura para mayor visibilidad */
 `;
 
@@ -32,6 +32,7 @@ export const NavContainer = styled.div`
   background: rgba(28, 28, 28, 0.8);
   border: 1px solid rgba(255, 215, 0, 0.3); /* Borde dorado translúcido */
   transition: background 0.3s ease, border 0.3s ease;
+  z-index: 20;
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -65,6 +66,10 @@ export const Logo = styled.div`
         0 0 50px #ffd700;
     }
   }
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const NavLinks = styled.div`
@@ -89,6 +94,10 @@ export const NavLink = styled.a`
     transform: translateY(-5px);
     text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
   }
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const HamburgerIcon = styled.div`
@@ -96,14 +105,20 @@ export const HamburgerIcon = styled.div`
   cursor: pointer;
   color: #ffd700; /* Dorado */
   font-size: 2rem;
+  padding: 0.5rem; /* Agregar padding para mantener el ícono dentro del contenedor */
+  z-index: 21; /* Aumentar el z-index para asegurarse de que esté por encima del contenido */
 
   @media (max-width: 1000px) {
     display: block;
   }
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const MobileMenu = styled.div<{ $isOpen: boolean }>`
-  display: none;
+  display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   gap: 1rem;
@@ -112,16 +127,11 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
   padding: 1rem;
   position: absolute;
   top: 100px;
+  right: 0; /* Posicionar a la derecha */
   width: 90%;
-  z-index: 9;
-
-  ${({ $isOpen }) =>
-    $isOpen &&
-    `
-    display: flex;
-  `}
+  z-index: 20;
 
   @media (max-width: 1000px) {
-    display: flex;
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
   }
 `;

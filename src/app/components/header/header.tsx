@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import Particles from "./Particles";
 import {
@@ -8,7 +8,8 @@ import {
   HeaderOverlay,
   Button,
   ArrowIcon,
-  CanvasContainer,
+  TopCanvasContainer,
+  BottomCanvasContainer,
   PaginationContainer,
   PaginationDot,
 } from "./headerStyled";
@@ -19,6 +20,8 @@ const images = ["/image1.webp", "/image2.webp", "/image3.webp", "/image4.webp"];
 
 const Header: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const headerRef = useRef(null);
 
   const nextImage = () => {
     setCurrentImage((prevImage) => (prevImage + 1) % images.length);
@@ -27,9 +30,36 @@ const Header: React.FC = () => {
   const selectImage = (index: number) => {
     setCurrentImage(index);
   };
- 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <HeaderContainer style={{ backgroundImage: `url(${images[currentImage]})` }}>
+    <HeaderContainer
+      ref={headerRef}
+      $isMobile={isMobile}
+      style={{
+        backgroundImage: `url(${images[currentImage]})`,
+        marginBottom: "20px",
+      }}
+    >
+      <TopCanvasContainer>
+        <Canvas>
+          <Particles />
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+        </Canvas>
+      </TopCanvasContainer>
       <HeaderContent>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -40,13 +70,13 @@ const Header: React.FC = () => {
           <Button whileHover={{ scale: 1.1 }}>Reserva Ahora</Button>
         </motion.div>
       </HeaderContent>
-      <CanvasContainer>
+      <BottomCanvasContainer>
         <Canvas>
           <Particles />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
         </Canvas>
-      </CanvasContainer>
+      </BottomCanvasContainer>
       <HeaderOverlay />
       <ArrowIcon onClick={nextImage}>
         <ArrowForwardIosIcon style={{ fontSize: "2rem", color: "#ffd700" }} />
