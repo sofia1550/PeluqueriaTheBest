@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface NavLinksProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 export const Nav = styled.nav`
@@ -85,9 +85,7 @@ export const NavLinks = styled.div<NavLinksProps>`
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 0.5rem;
-    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
-    width: 100%;
-    text-align: center;
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
   }
 `;
 

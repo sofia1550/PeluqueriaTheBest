@@ -31,10 +31,8 @@ const Navbar: React.FC = () => {
       </CanvasContainer>
       <NavContainer>
         <Logo>Salon Unisex</Logo>
-        <HamburgerButton onClick={toggleMenu}>
-          &#9776;
-        </HamburgerButton>
-        <NavLinks isOpen={isOpen}>
+        <HamburgerButton onClick={toggleMenu}>&#9776;</HamburgerButton>
+        <NavLinks $isOpen={isOpen}>
           <motion.div
             whileHover={{
               scale: 1.2,
