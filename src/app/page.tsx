@@ -8,6 +8,7 @@ import { GlobalStyle } from "./globalStyle/globalStyle";
 function Home() {
   return (
     <>
+    
       <GlobalStyle />
       <Navbar />
       <Header />
