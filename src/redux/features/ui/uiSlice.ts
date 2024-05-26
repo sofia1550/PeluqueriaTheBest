@@ -1,26 +1,30 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 interface UIState {
-  isMenuOpen: boolean;
+  isAuthModalVisible: boolean;
+  authModalMode: 'login' | 'register';
 }
 
 const initialState: UIState = {
-  isMenuOpen: false,
+  isAuthModalVisible: false,
+  authModalMode: 'login',
 };
 
-export const uiSlice = createSlice({
-  name: "ui",
+const uiSlice = createSlice({
+  name: 'ui',
   initialState,
   reducers: {
-    toggleMenu: (state) => {
-      state.isMenuOpen = !state.isMenuOpen;
+    showAuthModal: (state, action) => {
+      state.isAuthModalVisible = true;
+      state.authModalMode = action.payload; // 'login' or 'register'
     },
-    setMenuOpen: (state, action: PayloadAction<boolean>) => {
-      state.isMenuOpen = action.payload;
+    hideAuthModal: (state) => {
+      state.isAuthModalVisible = false;
     },
   },
 });
 
-export const { toggleMenu, setMenuOpen } = uiSlice.actions;
+export const { showAuthModal, hideAuthModal } = uiSlice.actions;
 
 export default uiSlice.reducer;
+

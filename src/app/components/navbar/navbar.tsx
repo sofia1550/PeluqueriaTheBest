@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { checkAuthentication } from "@/redux/features/auth/authSlice";
+import { RootState } from "@/redux/store";
 import {
   Nav,
   NavLinks,
@@ -10,14 +13,38 @@ import {
   CanvasContainer,
   HamburgerIcon,
   MobileMenu,
+  AuthButtons,
+  AuthButton,
 } from "./navbarStyled";
 import { motion } from "framer-motion";
+import { useAppDispatch } from "@/redux/hooks";
+import { showAuthModal } from "@/redux/features/ui/uiSlice";
+import { useAuthToken } from "../../hooks/useAuthToken";
+import AuthModal from "../authModel/authModel";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+
+  const { logout } = useAuthToken();
+
+  useEffect(() => {
+    dispatch(checkAuthentication());
+  }, [dispatch]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogoutClick = () => {
+    logout();
+  };
+
+  const handleAuthButtonClick = (mode: "login" | "register") => {
+    dispatch(showAuthModal(mode));
   };
 
   return (
@@ -32,9 +59,9 @@ const Navbar = () => {
         <HamburgerIcon onClick={toggleMenu}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </HamburgerIcon>
-        <Logo>Salon Unisex</Logo>
+        <Logo href="/">Salon Unisex</Logo>
         <NavLinks>
-          {["Home", "Services", "About", "Contact"].map((item) => (
+          {["Services", "About", "Contact"].map((item) => (
             <motion.div
               key={item}
               whileHover={{
@@ -46,8 +73,22 @@ const Navbar = () => {
             </motion.div>
           ))}
         </NavLinks>
+        <AuthButtons>
+          {!isAuthenticated ? (
+            <>
+              <AuthButton onClick={() => handleAuthButtonClick("login")}>
+                Sign In
+              </AuthButton>
+              <AuthButton onClick={() => handleAuthButtonClick("register")}>
+                Sign Up
+              </AuthButton>
+            </>
+          ) : (
+            <AuthButton onClick={handleLogoutClick}>Log Out</AuthButton>
+          )}
+        </AuthButtons>
         <MobileMenu $isOpen={isOpen}>
-          {["Home", "Services", "About", "Contact"].map((item) => (
+          {["Services", "About", "Contact"].map((item) => (
             <NavLink
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -56,11 +97,23 @@ const Navbar = () => {
               {item}
             </NavLink>
           ))}
+          {!isAuthenticated ? (
+            <>
+              <AuthButton onClick={() => handleAuthButtonClick("login")}>
+                Sign In
+              </AuthButton>
+              <AuthButton onClick={() => handleAuthButtonClick("register")}>
+                Sign Up
+              </AuthButton>
+            </>
+          ) : (
+            <AuthButton onClick={handleLogoutClick}>Log Out</AuthButton>
+          )}
         </MobileMenu>
       </NavContainer>
+      <AuthModal />
     </Nav>
   );
 };
 
 export default Navbar;
-

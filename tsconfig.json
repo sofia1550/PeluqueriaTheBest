@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "allowSyntheticDefaultImports": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -31,6 +31,6 @@
     ".next/types/**/*.ts",
     "src/app/components/header/BackgroundAnimation.jsx",
     "src/app/components/projectOverview/threeDEffect.jsx"
-  ],
+, "src/app/components/middleware"  ],
   "exclude": ["node_modules"]
 }

@@ -35,13 +35,13 @@ export const NavContainer = styled.div`
   z-index: 20;
 
   @media (max-width: 1000px) {
-    flex-direction: row; /* Cambiar de columna a fila */
-    justify-content: space-between; /* Justificar espacio entre los elementos */
-    align-items: center; /* Alinear los elementos en el centro */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.a`
   color: #ffd700;
   font-size: 2rem;
   font-weight: bold;
@@ -142,5 +142,35 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
 
   @media (max-width: 1000px) {
     display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+  }
+`;
+
+export const AuthButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
+`;
+
+export const AuthButton = styled.a`
+  background-color: #ffd700;
+  color: #1c1c1c;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #1c1c1c;
+    color: #ffd700;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.5rem;
   }
 `;

@@ -29,6 +29,7 @@
     "react-redux": "^9.1.0",
     "react-slick": "^0.30.2",
     "react-three-fiber": "^6.0.13",
+    "react-toastify": "^10.0.5",
     "react-tsparticles": "^2.9.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",

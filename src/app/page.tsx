@@ -7,6 +7,7 @@ import Header from "./components/header/header";
 import { GlobalStyle } from "./globalStyle/globalStyle";
 import Information from "./components/sectionInformationCarrousel/information/information";
 import Footer from "./components/footer/footer";
+import AuthModal from "./components/authModel/authModel";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <Header />
       <Information />
       <Footer />
+      <AuthModal />
     </>
   );
 }
