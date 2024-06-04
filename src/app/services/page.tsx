@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
 import Navbar from "../components/navbar/navbar";
-import Servicess from "./components/services&Calendar/services";
-import MyCalendar from "./components/services&Calendar/calendar/calendar";
+import Services from "../components/services&Calendar/services";
+import MyCalendar from "../components/services&Calendar/calendar/calendar";
 
-const Services: React.FC = () => {
+const ServicesPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Servicess/>
+      <Services/>
       <MyCalendar/>
     </>
   );
 };
 
-export default Services;
+export default ServicesPage;
