@@ -9,7 +9,7 @@ import {
   ReserveButton,
 } from "./servicesStyled";
 
-const Services: React.FC = () => {
+const Servicess: React.FC = () => {
   return (
     <ReservationContainer
       initial={{ opacity: 0 }}
@@ -40,4 +40,4 @@ const Services: React.FC = () => {
   );
 };
 
-export default Services;
+export default Servicess;
