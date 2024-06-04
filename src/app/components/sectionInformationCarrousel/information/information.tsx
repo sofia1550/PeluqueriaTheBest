@@ -1,4 +1,4 @@
-// components/sectionInformationCarrousel/information/Information.tsx
+"use client"
 import React from 'react';
 import {
   InfoSection,

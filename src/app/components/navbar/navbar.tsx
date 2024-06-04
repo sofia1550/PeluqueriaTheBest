@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
                 transition: { duration: 0.3 },
               }}
             >
-              <NavLink href={`#${item.toLowerCase()}`}>{item}</NavLink>
+              <NavLink href={`/${item.toLowerCase()}`}>{item}</NavLink>
             </motion.div>
           ))}
         </NavLinks>
@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
           {["Services", "About", "Contact"].map((item) => (
             <NavLink
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`/${item.toLowerCase()}`}
               onClick={toggleMenu}
             >
               {item}

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import Particles from "./Particles";

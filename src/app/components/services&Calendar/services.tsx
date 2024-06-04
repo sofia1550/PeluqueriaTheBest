@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   ReservationContainer,
@@ -6,9 +7,9 @@ import {
   Title,
   Description,
   ReserveButton,
-} from "./reservationStyled";
+} from "./servicesStyled";
 
-const Reservation: React.FC = () => {
+const Services: React.FC = () => {
   return (
     <ReservationContainer
       initial={{ opacity: 0 }}
@@ -39,4 +40,4 @@ const Reservation: React.FC = () => {
   );
 };
 
-export default Reservation;
+export default Services;

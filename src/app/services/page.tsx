@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import Navbar from "../components/navbar/navbar";
-import Reservationn from "../components/reservationCalendar/reservation";
-import MyCalendar from "../components/calendar/calendar";
+import Services from "../components/services&Calendar/services";
+import MyCalendar from "../components/services&Calendar/calendar/calendar";
 
 const Reservation: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Reservationn/>
+      <Services/>
       <MyCalendar/>
     </>
   );
