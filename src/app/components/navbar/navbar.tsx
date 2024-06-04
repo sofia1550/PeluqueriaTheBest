@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Canvas } from "@react-three/fiber";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { checkAuthentication } from "@/redux/features/auth/authSlice";
@@ -90,7 +91,9 @@ const Navbar: React.FC = () => {
                 transition: { duration: 0.3 },
               }}
             >
-              <NavLink href={`/${item.toLowerCase()}`}>{item}</NavLink>
+              <Link href={`/${item.toLowerCase()}`} passHref>
+                <NavLink>{item}</NavLink>
+              </Link>
             </motion.div>
           ))}
         </NavLinks>
@@ -116,13 +119,9 @@ const Navbar: React.FC = () => {
         </AuthButtons>
         <MobileMenu $isOpen={isOpen}>
           {["Services", "About", "Contact"].map((item) => (
-            <NavLink
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              onClick={toggleMenu}
-            >
-              {item}
-            </NavLink>
+            <Link href={`/${item.toLowerCase()}`} passHref key={item}>
+              <NavLink onClick={toggleMenu}>{item}</NavLink>
+            </Link>
           ))}
           {!isLoading && showButtons ? (
             <>
