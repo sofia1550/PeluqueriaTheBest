@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Nav = styled.nav`
   background-color: transparent;
@@ -173,4 +173,22 @@ export const AuthButton = styled.a`
   @media (max-width: 500px) {
     padding: 0.5rem;
   }
+`;
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingSpinner = styled.div`
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: ${spin} 1s linear infinite;
 `;

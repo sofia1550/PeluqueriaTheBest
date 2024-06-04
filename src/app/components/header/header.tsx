@@ -15,6 +15,7 @@ import {
 } from "./headerStyled";
 import { motion } from "framer-motion";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"; // Importar ícono de Material-UI
+import Link from "next/link"; // Importar Link de next/link
 
 const images = ["/image1.webp", "/image2.webp", "/image3.webp", "/image4.webp"];
 
@@ -67,7 +68,9 @@ const Header: React.FC = () => {
           transition={{ duration: 1 }}
         >
           <HeaderText>Bienvenidos a Salon Unisex</HeaderText>
-          <Button whileHover={{ scale: 1.1 }}>Reserva Ahora</Button>
+          <Link href={"/reservation"}>
+            <Button whileHover={{ scale: 1.1 }}>Reserva Ahora</Button>
+          </Link>
         </motion.div>
       </HeaderContent>
       <BottomCanvasContainer>

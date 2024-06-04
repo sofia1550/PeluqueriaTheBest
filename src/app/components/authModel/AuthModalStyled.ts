@@ -52,8 +52,8 @@ export const Field = styled.div`
 
 export const Label = styled.label`
   position: absolute;
-  left: 0.75rem;
-  top: 0.75rem;
+  left: 1rem;
+  top: 1.25rem;
   color: #9ca3af;
   transition: all 0.3s ease;
   pointer-events: none;
@@ -62,15 +62,17 @@ export const Label = styled.label`
   &:focus,
   &.filled {
     top: -0.75rem;
-    left: 0.75rem;
+    left: 1rem;
     font-size: 0.75rem;
     color: #ffd700;
+    background: rgba(28, 28, 28, 0.9);
+    padding: 0 0.25rem;
   }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  padding: 0.75rem;
+  padding: 1.25rem 0.75rem 0.75rem 0.75rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -84,9 +86,11 @@ export const Input = styled.input`
 
   &:focus + ${Label}, &:not(:placeholder-shown) + ${Label} {
     top: -0.75rem;
-    left: 0.75rem;
+    left: 1rem;
     font-size: 0.75rem;
     color: #ffd700;
+    background: rgba(28, 28, 28, 0.9);
+    padding: 0 0.25rem;
   }
 `;
 
