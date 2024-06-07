@@ -88,7 +88,7 @@ export const NavLinks = styled.div`
   }
 `;
 
-export const NavLink = styled.a`
+export const NavLink = styled.div`
   color: #f8f9fa;
   text-decoration: none;
   font-weight: bold;

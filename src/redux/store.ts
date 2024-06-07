@@ -4,7 +4,8 @@ import productReducer from "../redux/features/product/productSlice"; // Asegúra
 import cartReducer from "../redux/features/cart/cartSlice"; // Asegúrate de que la ruta sea correcta
 import sidebarReducer from "../redux/features/sidebar/sidebarSlice";
 import authReducer from "../redux/features/auth/authSlice";
-import uiReducer from './features/ui/uiSlice';
+import uiReducer from "./features/ui/uiSlice";
+import disponibilidadReducer from "./features/disponibilidad/disponibilidadSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     sidebar: sidebarReducer,
     ui: uiReducer,
     auth: authReducer,
+    disponibilidad: disponibilidadReducer,
   },
 });
 

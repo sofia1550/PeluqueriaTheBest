@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import Particles from "./Particles";
@@ -6,7 +6,6 @@ import {
   HeaderContainer,
   HeaderContent,
   HeaderText,
-  HeaderOverlay,
   Button,
   ArrowIcon,
   TopCanvasContainer,
@@ -15,10 +14,10 @@ import {
   PaginationDot,
 } from "./headerStyled";
 import { motion } from "framer-motion";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"; // Importar ícono de Material-UI
-import Link from "next/link"; // Importar Link de next/link
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Link from "next/link";
 
-const images = ["/image1.webp", "/image2.webp", "/image3.webp", "/image4.webp"];
+const images = ["/image1.webp", "/image2.webp", "/image3.webp"];
 
 const Header: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -52,7 +51,9 @@ const Header: React.FC = () => {
       $isMobile={isMobile}
       style={{
         backgroundImage: `url(${images[currentImage]})`,
-        marginBottom: "0px",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <TopCanvasContainer>
@@ -81,7 +82,6 @@ const Header: React.FC = () => {
           <pointLight position={[10, 10, 10]} />
         </Canvas>
       </BottomCanvasContainer>
-      <HeaderOverlay />
       <ArrowIcon onClick={nextImage}>
         <ArrowForwardIosIcon style={{ fontSize: "2rem", color: "#ffd700" }} />
       </ArrowIcon>

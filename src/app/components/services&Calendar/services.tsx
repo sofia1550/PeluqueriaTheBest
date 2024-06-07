@@ -32,7 +32,7 @@ const Services: React.FC = () => {
           servicios para que te sientas y te veas genial. Reserva tu turno
           ahora para experimentar lo mejor en cuidado personal.
         </Description>
-        <ReserveButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <ReserveButton whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>
           Reservar Ahora
         </ReserveButton>
       </TextSection>

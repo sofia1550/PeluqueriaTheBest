@@ -22,13 +22,19 @@ const getInitialAuthState = (): AuthState => {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     if (token && user) {
-      return {
-        isAuthenticated: true,
-        user: JSON.parse(user),
-        isLoading: false,
-        error: null,
-        status: "succeeded",
-      };
+      try {
+        return {
+          isAuthenticated: true,
+          user: JSON.parse(user),
+          isLoading: false,
+          error: null,
+          status: "succeeded",
+        };
+      } catch (e) {
+        console.error("Error parsing user from localStorage", e);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     }
   }
   return {
@@ -48,13 +54,13 @@ const getToken = (): string | null =>
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3001/auth"
-    : "/auth";
+    : "http://localhost:3001/api/auth";
 
 export const checkAuthentication = createAsyncThunk<
   { isAuthenticated: boolean; user: User | null },
   void,
   { state: RootState; rejectValue: Record<string, string> }
->("auth/checkAuthentication", async (_, { rejectWithValue }) => {
+>("/auth/checkAuthentication", async (_, { rejectWithValue }) => {
   const token = getToken();
   if (!token) {
     return {
@@ -64,7 +70,7 @@ export const checkAuthentication = createAsyncThunk<
   }
 
   try {
-    const response = await axios.get(`${API_BASE_URL}/verify`, {
+    const response = await axios.get(`http://localhost:3001/api/auth/verify`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return {

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { RootState } from "@/redux/store";
 import {
@@ -7,7 +7,7 @@ import {
   clearError,
   setAuthStateFromClient,
 } from "@/redux/features/auth/authSlice";
-import { hideAuthModal } from "@/redux/features/ui/uiSlice";
+import { hideAuthModal, setAuthModalMode } from "@/redux/features/ui/uiSlice";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import dynamic from "next/dynamic";
@@ -41,11 +41,13 @@ const AuthModal: React.FC = () => {
 
   const isLogin = modalMode === "login";
 
-  const handleLogin = () => {
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
 
-  const handleRegister = () => {
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
     dispatch(registerUser({ nombre, email, password }));
   };
 
@@ -93,6 +95,10 @@ const AuthModal: React.FC = () => {
     }
   }, [showModal, dispatch]);
 
+  const toggleAuthMode = () => {
+    dispatch(setAuthModalMode(isLogin ? "register" : "login"));
+  };
+
   return (
     <Modal $show={showModal}>
       <ModalContent $show={showModal}>
@@ -100,50 +106,57 @@ const AuthModal: React.FC = () => {
           &times;
         </ModalClose>
         <h1>{isLogin ? "Login" : "Register"}</h1>
-        <Field>
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder=" "
-          />
-          <Label className={email ? "filled" : ""}>Email</Label>
-        </Field>
-        <Field>
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder=" "
-          />
-          <Label className={password ? "filled" : ""}>Password</Label>
-        </Field>
-        {!isLogin && (
+        <form onSubmit={isLogin ? handleLogin : handleRegister}>
           <Field>
             <Input
-              type="text"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder=" "
+              autoComplete="email"
             />
-            <Label className={nombre ? "filled" : ""}>Nombre</Label>
+            <Label className={email ? "filled" : ""}>Email</Label>
           </Field>
-        )}
-        {error && (
-          <Error>
-            {typeof error === "object"
-              ? Object.values(error).join(", ")
-              : error}
-          </Error>
-        )}
-        <div className="mt-4">
-          <Button
-            onClick={isLogin ? handleLogin : handleRegister}
-            disabled={isLoading}
-          >
-            {isLogin ? "Login" : "Register"}
-          </Button>
-        </div>
+          <Field>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder=" "
+              autoComplete="current-password"
+            />
+            <Label className={password ? "filled" : ""}>Password</Label>
+          </Field>
+          {!isLogin && (
+            <Field>
+              <Input
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                placeholder=" "
+                autoComplete="name"
+              />
+              <Label className={nombre ? "filled" : ""}>Nombre</Label>
+            </Field>
+          )}
+          {error && (
+            <Error>
+              {typeof error === "object"
+                ? Object.values(error).join(", ")
+                : error}
+            </Error>
+          )}
+          <div className="mt-4">
+            <Button type="submit" disabled={isLoading}>
+              {isLogin ? "Login" : "Register"}
+            </Button>
+          </div>
+          <div className="mt-4">
+            <Button type="button" onClick={toggleAuthMode}>
+              {isLogin ? "Go to Register" : "Go to Login"}
+            </Button>
+          </div>
+        </form>
       </ModalContent>
     </Modal>
   );

@@ -6,16 +6,24 @@ export const HeaderContainer = styled.header<{ $isMobile: boolean }>`
   height: 60vh;
   position: relative;
   display: flex;
-  flex-direction: column; /* Cambiado a columna para permitir las secciones superior e inferior */
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.7)
-  );
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Ajusta la opacidad según sea necesario */
+    z-index: 1; /* Asegura que la superposición esté por encima de la imagen de fondo */
+  }
 
   ${({ $isMobile }) =>
     $isMobile &&
@@ -28,17 +36,6 @@ export const HeaderContainer = styled.header<{ $isMobile: boolean }>`
   @media (max-width: 768px) {
     height: auto;
   }
-`;
-
-export const HeaderOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("/background.webp") no-repeat center center/cover;
-  opacity: 0.7;
-  z-index: -1;
 `;
 
 export const HeaderContent = styled.div`
@@ -100,7 +97,7 @@ export const Button = styled(motion.button)`
 
 export const TopCanvasContainer = styled.div`
   width: 100%;
-  height: 20vh; /* Ajustar la altura según sea necesario */
+  height: 20vh;
   position: relative;
 
   @media (max-width: 768px) {
@@ -110,7 +107,7 @@ export const TopCanvasContainer = styled.div`
 
 export const BottomCanvasContainer = styled.div`
   width: 100%;
-  height: 20vh; /* Ajustar la altura según sea necesario */
+  height: 20vh;
   position: relative;
 
   @media (max-width: 768px) {
